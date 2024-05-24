@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cricket_Game</title>
+  <style>
+    body{
+      margin-top: 50px;
+      text-align: center;
+
+      background-image:url(./img/stadium.jpeg);
+      
+    }
+.game_buttons{
+height: 100px;
+width: 100px;
+border: none;
+margin: 10px;
+border-radius: 50%;
+background-color: gray;
+}
+  
+img{
+  height: 75px;
+}
+
+#reset{
+  color: red;
+  border-radius: 30px;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.show{
+  color: white
+}
+   
+   
+          
+  </style>
+</head>
+<body>
+  <h1 style="color: white;">Ball Bat Stump Game</h1>
+  <button  class="game_buttons"  onclick="
+  let usermsg='Bat';
+
+  let computerchoice=computergeneratechoice();
+
+  let cmpmsg=computerchoice;
+
+
+  let result=getresult(usermsg,computerchoice);
+  /*
+  if(computerchoice==='Bat'){
+    result='both are tie';
+  }
+  else if(computerchoice ==='Ball'){
+    result='user won';
+  }
+  else{
+    result='computer won';
+  }
+  */
+
+
+//  alert(`${usermsg} \n ${cmpmsg} \n the result is ${result}`);
+showresult(usermsg,cmpmsg,result);
+
+  
+  
+  
+  ">  
+<img src="img/bat.jpeg"  class="game_image" alt="Bat_button">
+</button>
+
+  <button  class="game_buttons"   onclick="
+  usermsg='Ball';
+  computerchoice=computergeneratechoice();
+  cmpmsg=computerchoice;
+
+  result=getresult('Ball',computerchoice);
+
+  /*
+  if(computerchoice==='Bat'){
+    result='computer won';
+  }
+  else if(computerchoice ==='Ball'){
+    result='its a tie';
+  }
+  else{
+    result='user won';
+  }
+  */
+
+
+ // alert(`${usermsg} \n ${cmpmsg} \n the result is ${result}`);
+
+ showresult(usermsg,cmpmsg,result);
+  
+  
+  
+  ">  <img src="./img/ball.jpeg"  class="game_image" alt="Ball_button">  </button>
+
+  <Button    class="game_buttons"  onclick="
+  usermsg='stump';
+
+  computerchoice=computergeneratechoice();
+  cmpmsg=computerchoice;
+
+  result=getresult('stump',computerchoice);
+
+  /*
+  if(computerchoice==='Bat'){
+    result='user won';
+  }
+  else if(computerchoice ==='Ball'){
+    result='computer won';
+  }
+  else{
+    result='tie';
+  }
+  */
+
+
+  //alert(`${usermsg} \n ${cmpmsg} \n the result is ${result}`);
+  showresult(usermsg,cmpmsg,result);
+  
+  
+  
+  ">  <img src="./img/wickets.jpeg"   class="game_image" alt="wickets_button">  </Button>
+
+
+
+
+
+
+<!-- use moves and results in a heading type instead of using alert.. -->
+
+<div class="show">
+
+<h2 id="user-move"></h2>
+<h2 id="computer-move"></h2>
+<h2 id="result"></h2>
+<h2 id="score"></h2>
+
+</div>
+
+
+
+<button   onclick="localStorage.clear()
+resetscore(); //undefind value..             //without this function ,only the values in storage location can be changed..
+                                      //using reset function we can also so in alert notification 
+" id="reset">  RESET </button>
+
+
+  <script>
+
+
+    let score;
+   let scorestr=localStorage.getItem('SCORE');
+resetscore(scorestr);
+
+   function resetscore(scorestr){
+    score=scorestr?JSON.parse(scorestr):  {  //if 1st condition is !== undefined its run else
+                                       // score={ all values equals to 0}.....
+      win:0,
+      lost:0,                   //1.this helps 1st to clear data from storage..
+      tie:0,                    //2.and click refresh in broswer to restart newly..!   hint:you can use refresh button
+    };                          // to do both at same-time..
+  
+   score.display_results=function(){
+    return `  won: ${score.win},lost: ${score.lost},tie: ${score.tie}.  `;
+    
+     };
+    showresult();  //clicking reset button the function prints without pass parameters...
+
+
+    }
+  
+   
+   function computergeneratechoice(){
+    let choice;
+    //random choice by computer in between 0 & 3.
+   let randomnum=Math.random()*3;
+   
+   if(randomnum>0 && randomnum<=1){
+    return 'Bat';
+   }
+   else if(randomnum >1 && randomnum<=2){
+    return 'Ball';
+   }
+   else{
+    return 'stump';
+   }
+
+   //return choice;
+   //cmpmsg='computer has chosen:'+computerchoice;
+   }
+
+ 
+ // let total=0;
+
+   
+   function getresult(usermove,cmpchoice){
+    if(usermove==='Bat'){
+      //total++;
+      if(cmpchoice==='Bat'){
+      score.tie+=1;
+      return 'its a tie';
+      }
+      else if(cmpchoice==='Ball'){
+        score.win++;
+      return 'user won';
+      }
+      else
+      {
+        score.lost++;
+        return 'computer has won';
+      }
+    }
+    else if(usermove==='Ball'){
+      //total++;
+      if(cmpchoice==='Ball'){
+        score.tie+=1;
+      return 'its a tie';
+      }
+      else if(cmpchoice==='Bat'){
+        score.lost+=1;
+        return 'computer won';
+      }
+      else
+      {
+        score.win+=1;
+        return 'user won';
+      }
+    }
+    else if(usermove==='stump'){
+     //  total++;
+      if(cmpchoice==='stump'){
+        score.tie+=1;
+        return 'its a tie';
+      }
+      else if(cmpchoice==='Ball'){
+        score.lost+=1;
+        return 'computer has won';
+      }
+      else
+      {
+        score.win+=1;
+        return 'user won';
+      }
+    }
+  }
+
+  
+
+    function showresult(usermove,cmpchoice,result){
+
+    localStorage.setItem('SCORE',JSON.stringify(score));   
+    
+    document.querySelector('#user-move').innerHTML=  
+    usermove ? `user_chosen:  ${usermove}` : '';
+    document.querySelector('#computer-move').innerHTML=
+    cmpchoice ? `computer_chosen:  ${cmpchoice}` : '';
+    document.querySelector('#result').innerHTML= result || '';
+    document.querySelector('#score').innerHTML=`score:  ${score.display_results()}`;
+
+    
+      //alert( `1.user chosen: ${usermove} \n2.computer chosen:${cmpchoice} \n3.the result is:${result}\n ${score.display_results()}`);
+  
+
+   }
+  
+
+
+
+   
+  </script>
+  
+</body>
+</html>
