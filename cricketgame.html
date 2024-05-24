@@ -9,7 +9,10 @@
       margin-top: 50px;
       text-align: center;
 
-      background-image:url(./img/stadium.jpeg);
+      background-image:url(.stadium.jpeg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: fixed;
       
     }
 .game_buttons{
@@ -18,18 +21,27 @@ width: 100px;
 border: none;
 margin: 10px;
 border-radius: 50%;
-background-color: gray;
+background-color: gray
 }
   
 img{
-  height: 75px;
+  height: 96px;
+  border-radius: 50%
 }
 
 #reset{
-  color: red;
+  color: rgb(248, 248, 248);
+  background-color: red;
   border-radius: 30px;
   border: 1px solid black;
-  padding: 10px;
+  padding: 10px 15px;
+  transition: background-color 0.5s ease;
+}
+#reset:hover{
+  background-color: rgb(199, 4, 4);
+}
+#reset:active{
+  background-color: rgb(146, 7, 7);
 }
 
 .show{
@@ -71,7 +83,7 @@ showresult(usermsg,cmpmsg,result);
   
   
   ">  
-<img src="img/bat.jpeg"  class="game_image" alt="Bat_button">
+<img src="bat.jpeg"  class="game_image" alt="Bat_button">
 </button>
 
   <button  class="game_buttons"   onclick="
@@ -100,7 +112,7 @@ showresult(usermsg,cmpmsg,result);
   
   
   
-  ">  <img src="./img/ball.jpeg"  class="game_image" alt="Ball_button">  </button>
+  ">  <img src="ball.jpeg"  class="game_image" alt="Ball_button">  </button>
 
   <Button    class="game_buttons"  onclick="
   usermsg='stump';
@@ -128,7 +140,7 @@ showresult(usermsg,cmpmsg,result);
   
   
   
-  ">  <img src="./img/wickets.jpeg"   class="game_image" alt="wickets_button">  </Button>
+  ">  <img src="wickets.jpeg"   class="game_image" alt="wickets_button">  </Button>
 
 
 
