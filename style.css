@@ -14,12 +14,16 @@ width: 100px;
 border: none;
 margin: 10px;
 border-radius: 50%;
-background-color: gray
+background-color: gray;
+padding: 0;
+overflow: hidden;
 }
 
 img{
-height: 96px;
-border-radius: 50%
+display: block;
+height: auto;
+border-radius: 50%;
+width: 100%;
 }
 
 #reset{
